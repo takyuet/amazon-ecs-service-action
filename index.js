@@ -102,6 +102,7 @@ function createInput(parameters) {
         networkConfiguration: parameters.spec.networkConfiguration,
         placementConstraints: parameters.spec.placementConstraints,
         placementStrategy: parameters.spec.placementStrategy,
+        serviceConnectConfiguration: parameters.spec.serviceConnectConfiguration,
         platformVersion: parameters.spec.platformVersion,
         propagateTags: parameters.spec.propagateTags,
         role: parameters.spec.role,
@@ -147,8 +148,10 @@ function updateInput(parameters) {
         networkConfiguration: parameters.spec.networkConfiguration,
         placementConstraints: parameters.spec.placementConstraints,
         placementStrategy: parameters.spec.placementStrategy,
+        serviceConnectConfiguration: parameters.spec.serviceConnectConfiguration,
         platformVersion: parameters.spec.platformVersion,
         service: parameters.spec.serviceName,
+        loadBalancers: parameters.spec.loadBalancers,
         taskDefinition: parameters.spec.taskDefinition,
       },
   );
@@ -305,7 +308,7 @@ function updateNeeded(currentService, parameters) {
  */
 function isUpdateShapeValid(currentService, updateParams) {
   const commonKeys = ['cluster', 'desiredCount', 'enableECSManagedTags', 'enableExecuteCommand', 'forceNewDeployment', 'placementConstraints', 'placementStrategy', 'propagateTags', 'service'];
-  const ecsAvailableKeys = ['deploymentConfiguration', 'loadBalancers', 'networkConfiguration', 'serviceRegistries', 'taskDefinition'];
+  const ecsAvailableKeys = ['deploymentConfiguration', 'loadBalancers', 'networkConfiguration', 'serviceConnectConfiguration', 'serviceRegistries', 'taskDefinition'];
   const codeDeployAvailableKeys = ['deploymentConfiguration', 'healthCheckGracePeriodSeconds'];
   const externalAvailableKeys = ['healthCheckGracePeriodSeconds'];
 
